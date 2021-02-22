@@ -33,6 +33,10 @@ class Apple
         $this->callHandler('delete');
     }
     
+    /**
+     * Получить состоянние объекта
+     * @return string
+     */
     public function getState()
     {
         $state = new \stdClass();
@@ -42,6 +46,10 @@ class Apple
         return json_encode($state);
     }
     
+    /**
+     * Восстановить состояние объекта из строки json
+     * @param string $state
+     */
     public function setState($state)
     {
         $state = json_decode($state);
@@ -53,6 +61,7 @@ class Apple
     /**
      * Вызов внешнего обработчика в зависимости от статуса;
      * @param string $functionName
+     * @param aray $args
      */
     protected function callHandler($functionName, $args = [])
     {
@@ -73,6 +82,10 @@ class Apple
         return $this->deleted;
     }
     
+    /**
+     * Получить объект "состояния" для передачи в обработчика
+     * @return stdClass
+     */
     protected function getHandlerState()
     {
         $state = new \stdClass();

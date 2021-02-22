@@ -11,6 +11,10 @@ class StatusControl
         $this->storage[] = new StatusControlOnGround();
     }
     
+    /**
+     * @param apple/Apple
+     * @return bool
+     */
     public function makeStatusControl($apple)
     {
         foreach ($this->storage as $statusController) {

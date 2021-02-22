@@ -18,6 +18,11 @@ class AppleManager extends Model
         $this->statusControl = new apple\StatusControl();
     }
     
+    /**
+     * Выполнение кокого-либо действия над выбранным яблоком
+     * @param array $data
+     * @return array
+     */
     public function action($data)
     {
         $id = $data['id'];
@@ -70,6 +75,10 @@ class AppleManager extends Model
         return ["response" => "принято id=".$id." action = ".$action];
     }
     
+    /**
+     * Получение из БД объектов Apple
+     * @return array
+     */
     public function getApples()
     {
         $apples = $this->appleStorage->getAllApples();
@@ -83,6 +92,9 @@ class AppleManager extends Model
         return $apples;
     }
     
+    /**
+     * Генерация и запись в БД случайного количества объектов Apple
+     */
     public function addRandomNumberApples()
     {
         if (!$this->maxNumbersApples) return false;
@@ -95,6 +107,11 @@ class AppleManager extends Model
         }
     }
     
+    /**
+     * Проверка статуса объекта Apple с заданным id
+     * @param int $id
+     * @param apple\Apple $apple
+     */
     protected function actualStatus($id, $apple)
     {
         if ($this->statusControl->makeStatusControl($apple)) {
@@ -102,6 +119,9 @@ class AppleManager extends Model
         }
     }
     
+    /**
+     * @return array
+     */
     public function rules()
     {
         $rules[] = [['maxNumbersApples'], 'safe'];
